@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="SmartLibrarySystem/SmartLibrarySystem.vcxproj" />
+  <Project Path="SmartLibrarySystem/SmartLibrarySystem.vcxproj" Id="15e5bf61-9fd7-418a-8920-aa4938992cba" />
 </Solution>
