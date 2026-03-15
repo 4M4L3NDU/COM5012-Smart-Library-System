@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Book.h"
 #include "User.h"
+#include "Member.h"
 
 int main()
 {
@@ -9,7 +10,12 @@ int main()
 
     book1.displayBook();
     std::cout << std::endl;
-    user1.displayUser();
+
+    member1.displayMember();
+    member1.borrowBook();
+    member1.borrowBook();
+    member1.displayMember();
+
 
     return 0;
 }
