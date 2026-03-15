@@ -1,22 +1,31 @@
 #include <iostream>
-#include "Book.h"
-#include "User.h"
+#include "Library.h"
 #include "Member.h"
 
 int main()
 {
-    Book book1("fire", "AK", "12345");
+    Library library;
+
+    library.addBook(Book("The Hobbit", "J.R.R. Tolkien", "123"));
+    library.addBook(Book("1984", "George Orwell", "456"));
+
     Member member1("Amalendu", 1001);
 
-    member1.borrowBook(book1);
-    member1.displayMember();
-    book1.displayBook();
+    library.displayBooks();
+
+    std::cout << "Borrowing book 123..." << std::endl;
+
+    Book* book = library.findBookByISBN("123");
+
+    if (book != nullptr)
+    {
+        member1.borrowBook(*book);
+    }
 
     std::cout << std::endl;
 
-    member1.returnBook(book1);
+    library.displayBooks();
     member1.displayMember();
-    book1.displayBook();
 
     return 0;
 }
