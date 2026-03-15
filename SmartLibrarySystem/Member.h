@@ -1,5 +1,6 @@
 #pragma once
 #include "User.h"
+#include "Book.h"
 
 class Member : public User
 {
@@ -11,6 +12,7 @@ public:
 
     void borrowBook();
     void returnBook();
+    void borrowBook(Book& book);
 
     int getBorrowedBooks();
 

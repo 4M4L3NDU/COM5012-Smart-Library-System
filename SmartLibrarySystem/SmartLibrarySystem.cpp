@@ -11,10 +11,13 @@ int main()
     book1.displayBook();
     std::cout << std::endl;
 
+    member1.borrowBook(book1);
+
+    std::cout << std::endl;
+
+    book1.displayBook();
     member1.displayMember();
-    member1.borrowBook();
-    member1.borrowBook();
-    member1.displayMember();
+
 
     return 0;
 }
