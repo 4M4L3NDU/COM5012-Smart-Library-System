@@ -6,7 +6,7 @@
 int main()
 {
     Book book1("fire", "AK", "12345");
-    User user1("Amalendu", 1001);
+    Member member1("Amalendu", 1001);
 
     book1.displayBook();
     std::cout << std::endl;
@@ -15,7 +15,6 @@ int main()
     member1.borrowBook();
     member1.borrowBook();
     member1.displayMember();
-
 
     return 0;
 }
