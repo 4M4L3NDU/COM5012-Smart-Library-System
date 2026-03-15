@@ -10,11 +10,9 @@ private:
 public:
     Member(std::string n, int id);
 
-    void borrowBook();
-    void returnBook();
     void borrowBook(Book& book);
+    void returnBook(Book& book);
 
     int getBorrowedBooks();
-
     void displayMember();
 };

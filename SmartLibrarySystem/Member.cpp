@@ -26,12 +26,17 @@ void Member::borrowBook(Book& book)
     }
 }
 
-void Member::returnBook()
+void Member::returnBook(Book& book)
 {
-    if (borrowedBooks > 0)
+    if (book.getStatus() == "Borrowed" && borrowedBooks > 0)
     {
+        book.setStatus("Available");
         borrowedBooks--;
         std::cout << "Book returned successfully." << std::endl;
+    }
+    else
+    {
+        std::cout << "Return failed." << std::endl;
     }
 }
 
