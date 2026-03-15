@@ -8,24 +8,63 @@ int main()
 
     library.addBook(Book("The Hobbit", "J.R.R. Tolkien", "123"));
     library.addBook(Book("1984", "George Orwell", "456"));
+    library.addBook(Book("Dune", "Frank Herbert", "789"));
 
     Member member1("Amalendu", 1001);
 
-    library.displayBooks();
+    int choice;
+    std::string isbn;
 
-    std::cout << "Borrowing book 123..." << std::endl;
-
-    Book* book = library.findBookByISBN("123");
-
-    if (book != nullptr)
+    do
     {
-        member1.borrowBook(*book);
-    }
+        std::cout << "\nSmart Library System\n";
+        std::cout << "1. View Books\n";
+        std::cout << "2. Borrow Book\n";
+        std::cout << "3. Return Book\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Enter choice: ";
+        std::cin >> choice;
 
-    std::cout << std::endl;
+        if (choice == 1)
+        {
+            library.displayBooks();
+        }
 
-    library.displayBooks();
-    member1.displayMember();
+        else if (choice == 2)
+        {
+            std::cout << "Enter ISBN to borrow: ";
+            std::cin >> isbn;
+
+            Book* book = library.findBookByISBN(isbn);
+
+            if (book != nullptr)
+            {
+                member1.borrowBook(*book);
+            }
+            else
+            {
+                std::cout << "Book not found.\n";
+            }
+        }
+
+        else if (choice == 3)
+        {
+            std::cout << "Enter ISBN to return: ";
+            std::cin >> isbn;
+
+            Book* book = library.findBookByISBN(isbn);
+
+            if (book != nullptr)
+            {
+                member1.returnBook(*book);
+            }
+            else
+            {
+                std::cout << "Book not found.\n";
+            }
+        }
+
+    } while (choice != 4);
 
     return 0;
 }
