@@ -8,35 +8,30 @@ Member::Member(std::string n, int id) : User(n, id)
 
 void Member::borrowBook(Book& book)
 {
-    if (borrowedBooks >= 5)
-    {
-        std::cout << "Borrowing limit reached." << std::endl;
+    if (borrowedBooks >= 5) {
+        std::cout << "Limit reached\n";
         return;
     }
 
-    if (book.getStatus() == "Available")
-    {
+    if (book.getStatus() == "Available") {
         book.setStatus("Borrowed");
         borrowedBooks++;
-        std::cout << "Book borrowed successfully." << std::endl;
+        std::cout << "Book borrowed successfully\n";
     }
-    else
-    {
-        std::cout << "Book is not available." << std::endl;
+    else {
+        std::cout << "Book is not available\n";
     }
 }
 
 void Member::returnBook(Book& book)
 {
-    if (book.getStatus() == "Borrowed" && borrowedBooks > 0)
-    {
+    if (book.getStatus() == "Borrowed") {
         book.setStatus("Available");
         borrowedBooks--;
-        std::cout << "Book returned successfully." << std::endl;
+        std::cout << "Book returned successfully\n";
     }
-    else
-    {
-        std::cout << "Return failed." << std::endl;
+    else {
+        std::cout << "Book was not borrowed\n";
     }
 }
 
@@ -45,8 +40,8 @@ int Member::getBorrowedBooks()
     return borrowedBooks;
 }
 
-void Member::displayMember()
+void Member::displayUser()
 {
-    displayUser();
+    User::displayUser();
     std::cout << "Borrowed Books: " << borrowedBooks << std::endl;
 }

@@ -14,5 +14,5 @@ public:
     void returnBook(Book& book);
 
     int getBorrowedBooks();
-    void displayMember();
+    void displayUser() override;
 };

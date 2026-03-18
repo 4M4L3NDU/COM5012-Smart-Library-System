@@ -13,5 +13,5 @@ public:
     std::string getName();
     int getUserID();
 
-    void displayUser();
+    virtual void displayUser();
 };

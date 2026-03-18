@@ -18,6 +18,5 @@ public:
     std::string getStatus();
 
     void setStatus(std::string s);
-
     void displayBook();
 };

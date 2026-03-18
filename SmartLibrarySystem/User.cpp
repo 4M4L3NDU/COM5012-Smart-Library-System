@@ -19,6 +19,5 @@ int User::getUserID()
 
 void User::displayUser()
 {
-    std::cout << "User Name: " << name << std::endl;
-    std::cout << "User ID: " << userID << std::endl;
+    std::cout << "Name: " << name << ", User ID: " << userID << std::endl;
 }
