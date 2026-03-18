@@ -54,3 +54,25 @@ Book& Library::getBook(int index)
 {
     return books[index];
 }
+
+void Library::addLoan(const Loan& loan)
+{
+    loans.push_back(loan);
+}
+
+void Library::viewLoans()
+{
+    if (loans.empty()) {
+        std::cout << "No active loans.\n";
+        return;
+    }
+
+    std::cout << "\nLoan Records:\n";
+    for (int i = 0; i < loans.size(); i++) {
+        std::cout << "Loan #" << i + 1
+            << " | ISBN: " << loans[i].getISBN()
+            << " | Member ID: " << loans[i].getMemberID()
+            << " | Returned: " << (loans[i].isReturned() ? "Yes" : "No")
+            << std::endl;
+    }
+}

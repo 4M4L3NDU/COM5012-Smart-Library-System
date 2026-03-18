@@ -2,11 +2,13 @@
 #include <vector>
 #include <string>
 #include "Book.h"
+#include "Loan.h"
 
 class Library
 {
 private:
     std::vector<Book> books;
+    std::vector<Loan> loans;
 
 public:
     void addBook(const Book& book);
@@ -15,4 +17,7 @@ public:
     int searchBookByISBN(const std::string& isbn);
     void displayBookByIndex(int index);
     Book& getBook(int index);
+
+    void addLoan(const Loan& loan);
+    void viewLoans();
 };
