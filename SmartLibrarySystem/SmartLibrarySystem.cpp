@@ -19,7 +19,12 @@ int main()
     int choice;
 
     do {
-        std::cout << "\nSmart Library System\n";
+        std::cout << "\n=============================\n";
+        std::cout << "Smart Library System\n";
+        std::cout << "Logged in as: " << member.getName()
+            << " (User ID: " << member.getUserID() << ")\n";
+        std::cout << "Books currently borrowed: " << member.getBorrowedBooks() << "\n";
+        std::cout << "=============================\n";
         std::cout << "1. View Books\n";
         std::cout << "2. Borrow Book (by ISBN)\n";
         std::cout << "3. Return Book (by ISBN)\n";
@@ -28,12 +33,18 @@ int main()
         std::cout << "6. Display Member Info\n";
         std::cout << "7. Exit\n";
         std::cout << "Enter choice: ";
+
         std::cin >> choice;
 
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input.\n";
+            std::cout << "Invalid input. Please enter a number from 1 to 7.\n";
+            continue;
+        }
+
+        if (choice < 1 || choice > 7) {
+            std::cout << "Invalid choice. Please enter a number from 1 to 7.\n";
             continue;
         }
 
@@ -43,6 +54,7 @@ int main()
         else if (choice == 2) {
             std::string isbn;
             library.viewBooks();
+
             std::cout << "\nEnter ISBN to borrow: ";
             std::cin >> isbn;
 
@@ -52,12 +64,13 @@ int main()
                 member.borrowBook(library.getBook(index));
             }
             else {
-                std::cout << "Book not found.\n";
+                std::cout << "Book not found. Please enter a valid ISBN.\n";
             }
         }
         else if (choice == 3) {
             std::string isbn;
             library.viewBooks();
+
             std::cout << "\nEnter ISBN to return: ";
             std::cin >> isbn;
 
@@ -67,7 +80,7 @@ int main()
                 member.returnBook(library.getBook(index));
             }
             else {
-                std::cout << "Book not found.\n";
+                std::cout << "Book not found. Please enter a valid ISBN.\n";
             }
         }
         else if (choice == 4) {
@@ -84,7 +97,15 @@ int main()
             std::cout << "Enter ISBN: ";
             std::getline(std::cin, isbn);
 
-            library.addBook(Book(title, author, isbn));
+            if (title.empty() || author.empty() || isbn.empty()) {
+                std::cout << "All fields are required. Book was not added.\n";
+            }
+            else if (library.searchBookByISBN(isbn) != -1) {
+                std::cout << "A book with that ISBN already exists.\n";
+            }
+            else {
+                library.addBook(Book(title, author, isbn));
+            }
         }
         else if (choice == 5) {
             std::string title;
@@ -94,14 +115,19 @@ int main()
             std::cout << "Enter title to search: ";
             std::getline(std::cin, title);
 
-            int result = library.searchBook(title);
-
-            if (result != -1) {
-                std::cout << "Book found:\n";
-                library.displayBookByIndex(result);
+            if (title.empty()) {
+                std::cout << "Search title cannot be empty.\n";
             }
             else {
-                std::cout << "Book not found.\n";
+                int result = library.searchBook(title);
+
+                if (result != -1) {
+                    std::cout << "Book found:\n";
+                    library.displayBookByIndex(result);
+                }
+                else {
+                    std::cout << "Book not found.\n";
+                }
             }
         }
         else if (choice == 6) {
@@ -109,9 +135,6 @@ int main()
         }
         else if (choice == 7) {
             std::cout << "Exiting program.\n";
-        }
-        else {
-            std::cout << "Invalid choice.\n";
         }
 
     } while (choice != 7);
