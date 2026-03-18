@@ -76,6 +76,7 @@ void Library::viewLoans()
             << std::endl;
     }
 }
+
 void Library::markLoanAsReturned(const std::string& isbn, int memberID)
 {
     for (int i = 0; i < loans.size(); i++) {
@@ -90,4 +91,17 @@ void Library::markLoanAsReturned(const std::string& isbn, int memberID)
     }
 
     std::cout << "No matching active loan found.\n";
+}
+
+bool Library::hasActiveLoan(const std::string& isbn, int memberID)
+{
+    for (int i = 0; i < loans.size(); i++) {
+        if (loans[i].getISBN() == isbn &&
+            loans[i].getMemberID() == memberID &&
+            !loans[i].isReturned()) {
+
+            return true;
+        }
+    }
+    return false;
 }

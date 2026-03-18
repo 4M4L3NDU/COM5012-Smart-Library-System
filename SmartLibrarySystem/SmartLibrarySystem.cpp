@@ -46,7 +46,7 @@ int main()
 
         if (std::cin.fail()) {
             std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
             std::cout << "Invalid input. Please enter a number from 1 to 9.\n";
             continue;
         }
@@ -93,15 +93,12 @@ int main()
             int index = library.searchBookByISBN(isbn);
 
             if (index != -1) {
-                if (library.getBook(index).getStatus() == "Borrowed") {
-
-                    member.returnBook(library.getBook(index));
-
-                    // 🔥 NEW: update loan record
-                    library.markLoanAsReturned(isbn, member.getUserID());
+                if (!library.hasActiveLoan(isbn, member.getUserID())) {
+                    std::cout << "You did not borrow this book.\n";
                 }
                 else {
-                    std::cout << "This book is not currently borrowed.\n";
+                    member.returnBook(library.getBook(index));
+                    library.markLoanAsReturned(isbn, member.getUserID());
                 }
             }
             else {
@@ -111,7 +108,7 @@ int main()
         else if (choice == 4) {
             std::string title, author, isbn;
 
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
 
             std::cout << "Enter title: ";
             std::getline(std::cin, title);
@@ -135,7 +132,7 @@ int main()
         else if (choice == 5) {
             std::string title;
 
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
 
             std::cout << "Enter title to search: ";
             std::getline(std::cin, title);
