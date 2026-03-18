@@ -93,7 +93,16 @@ int main()
             int index = library.searchBookByISBN(isbn);
 
             if (index != -1) {
-                member.returnBook(library.getBook(index));
+                if (library.getBook(index).getStatus() == "Borrowed") {
+
+                    member.returnBook(library.getBook(index));
+
+                    // 🔥 NEW: update loan record
+                    library.markLoanAsReturned(isbn, member.getUserID());
+                }
+                else {
+                    std::cout << "This book is not currently borrowed.\n";
+                }
             }
             else {
                 std::cout << "Book not found. Please enter a valid ISBN.\n";

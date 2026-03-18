@@ -76,3 +76,18 @@ void Library::viewLoans()
             << std::endl;
     }
 }
+void Library::markLoanAsReturned(const std::string& isbn, int memberID)
+{
+    for (int i = 0; i < loans.size(); i++) {
+        if (loans[i].getISBN() == isbn &&
+            loans[i].getMemberID() == memberID &&
+            !loans[i].isReturned()) {
+
+            loans[i].markReturned();
+            std::cout << "Loan record updated (marked as returned).\n";
+            return;
+        }
+    }
+
+    std::cout << "No matching active loan found.\n";
+}

@@ -20,4 +20,5 @@ public:
 
     void addLoan(const Loan& loan);
     void viewLoans();
+    void markLoanAsReturned(const std::string& isbn, int memberID);
 };
