@@ -1,29 +1,56 @@
 #include "Library.h"
 #include <iostream>
 
-void Library::addBook(Book book)
+void Library::addBook(const Book& book)
 {
     books.push_back(book);
+    std::cout << "Book added successfully.\n";
 }
 
-void Library::displayBooks()
+void Library::viewBooks()
 {
-    for (auto& book : books)
-    {
-        book.displayBook();
-        std::cout << std::endl;
+    if (books.empty()) {
+        std::cout << "No books in the library.\n";
+        return;
+    }
+
+    for (int i = 0; i < books.size(); i++) {
+        std::cout << "\nBook #" << i + 1 << std::endl;
+        books[i].displayBook();
     }
 }
 
-Book* Library::findBookByISBN(std::string isbn)
+int Library::searchBook(const std::string& title)
 {
-    for (auto& book : books)
-    {
-        if (book.getISBN() == isbn)
-        {
-            return &book;
+    for (int i = 0; i < books.size(); i++) {
+        if (books[i].getTitle() == title) {
+            return i;
         }
     }
+    return -1;
+}
 
-    return nullptr;
+int Library::searchBookByISBN(const std::string& isbn)
+{
+    for (int i = 0; i < books.size(); i++) {
+        if (books[i].getISBN() == isbn) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void Library::displayBookByIndex(int index)
+{
+    if (index < 0 || index >= books.size()) {
+        std::cout << "Invalid book selection.\n";
+        return;
+    }
+
+    books[index].displayBook();
+}
+
+Book& Library::getBook(int index)
+{
+    return books[index];
 }

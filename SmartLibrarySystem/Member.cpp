@@ -9,17 +9,17 @@ Member::Member(std::string n, int id) : User(n, id)
 void Member::borrowBook(Book& book)
 {
     if (borrowedBooks >= 5) {
-        std::cout << "Limit reached\n";
+        std::cout << "Limit reached. Cannot borrow more than 5 books.\n";
         return;
     }
 
     if (book.getStatus() == "Available") {
         book.setStatus("Borrowed");
         borrowedBooks++;
-        std::cout << "Book borrowed successfully\n";
+        std::cout << "Book borrowed successfully.\n";
     }
     else {
-        std::cout << "Book is not available\n";
+        std::cout << "Book is not available.\n";
     }
 }
 
@@ -28,10 +28,10 @@ void Member::returnBook(Book& book)
     if (book.getStatus() == "Borrowed") {
         book.setStatus("Available");
         borrowedBooks--;
-        std::cout << "Book returned successfully\n";
+        std::cout << "Book returned successfully.\n";
     }
     else {
-        std::cout << "Book was not borrowed\n";
+        std::cout << "Book is already available.\n";
     }
 }
 
