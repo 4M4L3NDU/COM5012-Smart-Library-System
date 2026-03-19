@@ -53,4 +53,4 @@ The system allows users to manage books in a library, including borrowing, retur
 ---
 
 ## Author
-COM5012 Student Project
+COM5012 Amalendu Kshithish 22401580
