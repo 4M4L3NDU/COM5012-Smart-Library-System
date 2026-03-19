@@ -1,14 +1,28 @@
-# Smart Library Management System (COM5012)
 ## Overview
+This project is a C++ Smart Library System developed for COM5012 Object-Oriented Programming coursework.
 
-This project is a partial implementation of a Smart Library Management System (SLMS) developed in C++ as part of the COM5012 Object-Oriented Programming module.
+## Features
+- View books
+- Borrow books by ISBN
+- Return books by ISBN
+- Add books
+- Search books by title
+- Track loan records
+- Display member and librarian information
+- Input validation
 
-The system demonstrates key Object-Oriented Programming (OOP) concepts including:
+## Classes
+- Book
+- User
+- Member
+- Librarian
+- Loan
+- Library
 
-Encapsulation
+## OOP Concepts Used
+- Encapsulation
+- Inheritance
+- Polymorphism
 
-Inheritance
-
-Polymorphism
-
-The application allows users to interact with a simplified library system for managing books and users.
+## How to Run
+Open the project in Visual Studio and run SmartLibrarySystem.cpp.
